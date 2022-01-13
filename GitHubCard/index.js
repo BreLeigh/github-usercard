@@ -5,11 +5,13 @@ import axios from 'axios';
     https://api.github.com/users/BreLeigh
 */
 // installed axios 
-axios.get('https://api.github.com/users/BreLeigh')
-  .then(resp => {
-    document.querySelector('.cards').appendChild(githubCard(resp.data));
-  })
-  .catch(err => console.log(err))
+
+  // axios.get('https://api.github.com/users/BreLeigh')
+  // .then(resp => {
+  //   document.querySelector('.cards').appendChild(githubCard(resp.data));
+  // })
+  // .catch(err => console.log(err))
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -34,7 +36,19 @@ axios.get('https://api.github.com/users/BreLeigh')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell', 'BreLeigh'];
+
+for(let i = 0; i < followersArray.length; i++){
+  getGitCard(followersArray[i]);
+}
+
+function getGitCard(username){
+  axios.get(`https://api.github.com/users/${username}`)
+  .then(resp => {
+    document.querySelector('.cards').appendChild(githubCard(resp.data));
+  })
+  .catch(err => console.log(err))
+}
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
